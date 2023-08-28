@@ -57,7 +57,7 @@ function reverseDisplay(node) {
 const display = (node) => {
     let current = node
     while (current) {
-        console.log("s", current.data)
+        console.log(current.data)
         current = current.data
     }
 }
