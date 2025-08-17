@@ -29,11 +29,11 @@ class HashTable {
         if (currentBucket) {
             // For collision sake we loop 
             for (let i = 0; i < currentBucket.length; i++) {
-            if (currentBucket[i][0] === key) {
-                // console.log(currentBucket[i][1])
-                return currentBucket[i][1]
-            }
-        }
+                if (currentBucket[i][0] === key) {
+                    // console.log(currentBucket[i][1])
+                    return currentBucket[i][1]
+                }
+           }
         } else {
             // console.log('undefined')
             return undefined
