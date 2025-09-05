@@ -9,7 +9,8 @@ class LinkedList {
     constructor(value) {
         this.head = {
             value,
-            next: null
+            next: null,
+            prev: null
         };
         this.tail = this.head;
         this.length = 1;
@@ -91,5 +92,3 @@ console.log(myLinkedList.printList())
 myLinkedList.remove(2)
 console.log(myLinkedList)
 console.log(myLinkedList.printList())
-
- //Expected => [0,5,13,17,10,15,20] [0,5,undefined,17]

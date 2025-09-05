@@ -2,6 +2,7 @@
  * @param {string} s
  * @return {number}
  */
+//Sliding window solution
 var lengthOfLongestSubstring = function(s) {
   const stringMap = new Set();
   let left = 0;
