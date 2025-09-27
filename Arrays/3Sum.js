@@ -7,7 +7,7 @@ var threeSum = function(nums) {
     let triples = [];
 
     for (let i = 0; i < nums.length; i++) {
-        if (i > 0 && nums[i] === nums[i - 1]) continue;
+         
         let left = i + 1;
         let right = nums.length - 1;
 

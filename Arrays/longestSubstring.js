@@ -9,14 +9,11 @@ var lengthOfLongestSubstring = function(s) {
   let longest = 0;
   n = s.length;
   for (let right = 0; right < n; right++) {
-    console.log("s", stringMap)
-    console.log("l", longest)
+    stringMap.add(s[right]);
     while (stringMap.has(s[right])) {
       stringMap.delete(s[left]);
       left += 1;
     }
-
-    stringMap.add(s[right]);
     let windowLength = (right - left) + 1;
     longest = Math.max(longest, windowLength);
   }

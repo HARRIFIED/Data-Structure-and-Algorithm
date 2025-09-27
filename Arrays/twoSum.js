@@ -60,6 +60,39 @@ function twoSum3(nums, target) {
     return []
 }
 
+/**
+ * 
+ * @param {*} nums[]
+ * @param {*} target 
+ * 
+ * ?We use two pointer here
+ * ! Note we are always expecting sorted arrays here as nums
+ * Time complexity = O(n)
+ * Space complexity = O(1)
+ */
+function twoSum4(nums, target) {
+    let numsLen = nums.length;
+    if (numsLen < 2) return false;
+    let left = 0;
+    let right = numsLen - 1;
 
-console.log(twoSum3([10, 2, 4, 5, 9], 6))
+    while (left < right) {
+        let currentSum = nums[left] + nums[right]
+        if (currentSum == target) {
+            return true
+        }
+
+        if (currentSum > target) {
+            right--;
+        }
+
+        if (currentSum < target) {
+            left++
+        }
+    }
+    return false;
+}
+
+
+console.log(twoSum4([2, 4, 5, 9, 10], 13))
 
