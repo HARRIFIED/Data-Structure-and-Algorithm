@@ -7,5 +7,37 @@
  * If you perform the flip at index 2, the string becomes 1111100111.
  * 
  * * Thoughts
- * We are just finding the longest sub array with at most 1 zero.
+ * We are just finding the longest sub array with at most 1 zero in it.
+ * 
+ * Keep count of zeros we encounter as we slide and when its more than one then we slide the left bound of the window
+ * 0 1 2 3 4 5 6 7 8 9 
+ * 1 1 0 1 1 0 0 1 1 1
+ *           L
+ *                 R (zeroCount = 1, longest = 5)
  */
+
+function longestSubString(s) {
+    let left = 0;
+    let zeroCount = 0;
+    let longestLength = 0;
+
+    for (let right = 0; right < s.length; right++) {
+        if (s[right] === "0") {
+            zeroCount += 1;
+        }
+
+        while (zeroCount > 1) {
+            if (s[left] === "0") {
+                zeroCount -= 1;
+            }
+            left++;
+        }
+
+        let windowLength = right - left + 1;
+        longestLength = Math.max(longestLength, windowLength);
+    }
+
+    return longestLength
+}
+
+console.log(longestSubString("11011111"))

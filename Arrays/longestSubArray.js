@@ -8,8 +8,8 @@ function longestSubArray(nums, k) {
   for (let right = 0; right < nums.length; right++) {
     curr += nums[right];
     while (curr > k) {
-	curr -= nums[left];
-	left++
+      curr -= nums[left];
+      left++
     }
     let windowLength = right - left + 1;
     longestLength = Math.max(longestLength, windowLength);
