@@ -28,6 +28,19 @@
     currentSum = 5
     maxsum = 6
     output = [4,-1,2,1]
+   
+      0   1   2   3   
+    [-2, -3, -1, -5]
+    i
+    S
+    BS
+    BE
+
+    -3+(-2+3) = -3 + 1 = -2
+    -1+()
+    currentSum = -3
+    maxSum = -2
+
     ** We are using Kadane's algorithm to solve this problem in O(n) time complexity and O(1) space complexity.
 
     We keep track of the currentSum and maxSum as we iterate through the array.
@@ -36,6 +49,7 @@
 
 */
 
+// original
 function maxSubArray(nums) {
     let currentSum = 0;
     let maxSum = -Infinity;
@@ -59,6 +73,23 @@ function maxSubArray(nums) {
     }
 
     return nums.slice(bestStart, bestEnd + 1);
+}
+
+// Where we might be expecting all negative numbers
+function maxSubArray2 (nums) {
+    let currentSum = nums[0];
+    let maxSum = nums[0];
+
+    let start = 0;
+    let bestStart = 0;
+    let bestEnd = 0;
+
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] > currentSum + nums[i]) {
+            currentSum = nums[i];
+            start = i;
+        }
+    }
 }
 
 console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
