@@ -135,7 +135,97 @@ remove(value) {
       }
     }
   }
+
+  breadthFirstSearch() {
+    let currentNode = this.root;
+    let queue = [];
+    let list = [];
+
+    // Start with enqueuing by making our currentNode first item in the queue;
+    queue.push(currentNode);
+
+    while (queue.length > 0) {
+      currentNode = queue.shift();
+      list.push(currentNode.value);
+
+      if (currentNode.left !== null) {
+        queue.push(currentNode.left);
+      }
+
+      if (currentNode.right !== null) {
+        queue.push(currentNode.right);
+      }
+    }
+
+    return list;
+  }
+
+  breadthFirstSearchRecursion(queue, list) {
+    if (!queue.length) {
+      return list;
+    }
+    
+    let currentNode = this.root;
+    currentNode = queue.shift();
+    list.push(currentNode.value)
+    if (currentNode.left !== null) {
+      queue.push(currentNode.left)
+    }
+
+    if (currentNode.right !== null) {
+      queue.push(currentNode.right);
+    }
+    return this.breadthFirstSearch(queue, list)
+  }
+
+  depthFirstSearchInOrder() {
+    return traverseInOrder(this.root, []);
+  }
+
+  depthFirstSearchPreOrder() {
+    return traversePreOrder(this.root, []);
+  }
+  depthFirstSearchPostOrder() {
+    return traversePostOrder(this.root, []);
+  }
 }
+
+function traverseInOrder(node, list) {
+  if (node.left) {
+    traverseInOrder(node.left, list);
+  }
+  list.push(node.value);
+
+  if (node.right) {
+    traverseInOrder(node.right, list);
+  }
+  
+  return list;
+}
+
+function traversePreOrder(node, list) {
+  list.push(node.value);
+  if (node.left) {
+    traversePreOrder(node.left, list);
+  }
+
+  if (node.right) {
+    traversePreOrder(node.right, list);
+  }
+  return list;
+}
+
+function traversePostOrder(node, list) {
+  if (node.left) {
+    traversePostOrder(node.left, list);
+  }
+  if (node.right) {
+    traversePostOrder(node.right, list);
+  }
+  list.push(node.value);
+  return list;
+}
+
 
 const tree = new BinarySearchTree();
 tree.insert(9);
@@ -147,8 +237,13 @@ tree.insert(170);
 tree.insert(15);
 tree.insert(1);
 // tree.remove(170);
-console.log(JSON.stringify(traverse(tree.root)));
-console.log(tree.lookup(20));
+// console.log(JSON.stringify(traverse(tree.root)));
+// console.log(tree.lookup(20));
+// console.log(tree.breadthFirstSearch())
+// console.log(tree.breadthFirstSearchRecursion([tree.root], []))
+console.log(tree.depthFirstSearchInOrder());
+console.log(tree.depthFirstSearchPreOrder());
+console.log(tree.depthFirstSearchPostOrder());
 //     9
 //  4     20
 //1  6  15  170

@@ -39,7 +39,7 @@ function maxProfit(prices) {
     return result;
 }
 
-//Classic sliding window
+//Classic sliding window or 2 pointer
 function maxProfit2(prices) {
     let left = 0;
     let right = 0;
