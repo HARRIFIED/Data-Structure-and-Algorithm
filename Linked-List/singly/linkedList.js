@@ -104,6 +104,15 @@ class LinkedList {
         }
         return prevNode;
     }
+
+    reverseRecursion(currentNode, prev) {
+        if (!currentNode) return prev;
+        let temp = currentNode.next;
+        currentNode.next = prev;
+        prev = currentNode;
+        currentNode = temp;
+        return this.reverseRecursion(currentNode, prev);
+    }
 }
 const myLinkedList = new LinkedList(10)
 // console.log(myLinkedList.printList())
@@ -113,7 +122,7 @@ myLinkedList.prepend(0)
 
 myLinkedList.append(15)
 myLinkedList.append(20)
-console.log(myLinkedList.printList())
+// console.log(myLinkedList.printList())
 // console.log(myLinkedList.printList())
 // myLinkedList.insert(2, 13)
 // console.log(myLinkedList.printList())
@@ -123,5 +132,5 @@ console.log(myLinkedList.printList())
 // console.log(myLinkedList.printList())
 // myLinkedList.remove(2)
 // console.log(myLinkedList.printList())
-console.log(myLinkedList.reverse2())
+console.log(myLinkedList.reverseRecursion(myLinkedList.head, null))
 // console.log(myLinkedList.printList())
