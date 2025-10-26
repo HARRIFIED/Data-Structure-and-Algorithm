@@ -12,10 +12,13 @@ function dfs(graph, start) {
     return output;
 }
 
-function dfsRecursion(graph, start, output) {
+function dfsRecursion(graph, start, output, visited) {
     output.push(start);
+    visited.add(start)
     for (let curr of graph[start]) {
-        dfsRecursion(graph, curr, output)
+        if (!visited.has(curr)) {
+            dfsRecursion(graph, curr, output)
+        }
     }
     return output;
 }
@@ -39,14 +42,16 @@ function bfs(graph, start) {
  *   |         f
  *   c -- e
  */
-const graph = {
-    a: ['b', 'c'],        
-    b: ['d'],
-    c: ['e'],
-    d: ['f'],
-    e: [],
-    f: []
-}
+// const graph = {
+//     a: ['b', 'c'],        
+//     b: ['d'],
+//     c: ['e'],
+//     d: ['f'],
+//     e: [],
+//     f: []
+// }
 
-console.log(dfsRecursion(graph, 'a', []));
-console.log(bfs(graph, 'a'));
+const graph = { 0: [ 1, 2 ], 1: [ 0, 2 ], 2: [ 1, 0 ] }
+
+console.log(dfsRecursion(graph, 1, [], new Set()));
+console.log(bfs(graph, 1));

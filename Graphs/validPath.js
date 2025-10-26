@@ -16,7 +16,7 @@ You want to determine if there is a valid path that exists from vertex source to
  ** Thoughts...
    convert edge list format to adjacent list for easy iteration
    {
-     0: [1, 2],
+     0: [1, 2], 
      1: [0, 2],
      2: [1, 0]
    }
@@ -44,6 +44,24 @@ function validPath (edges, source, destination) {
     return dfs(source)
 }
 
+function validPathBFS(edges, source, destination) {
+    if (source === destination) return true;
+    const queue = [source];
+    const visited = new Set();
+    const graph = buildGraph(edges)
+    while (queue.length > 0) {
+        const currentNode = queue.shift();
+        visited.add(currentNode);
+        if (currentNode === destination) return true;
+        for (let curr of graph[currentNode]) {
+            if (!visited.has(curr)) {
+                queue.push(curr)
+            }
+        }
+    }
+    return false;
+}
+
 function buildGraph(edges) {
     const graph = {}
     for (let edge of edges) {
@@ -63,5 +81,5 @@ function buildGraph(edges) {
     return graph;
 }
 
-console.log(validPath([[0,1],[0,2],[3,5],[5,4],[4,3]], 0, 5))
-console.log(validPath([[0,1],[1,2],[2,0]], 0, 2))
+console.log(validPathBFS([[0,1],[0,2],[3,5],[5,4],[4,3]], 0, 5))
+console.log(validPathBFS([[0,1],[1,2],[2,0]], 0, 2))
