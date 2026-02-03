@@ -178,6 +178,7 @@ class BinarySearchTree {
     return this.breadthFirstSearch(queue, list)
   }
 
+  //* When you traverse in-order you always get a sorted array/list
   depthFirstSearchInOrder() {
     return traverseInOrder(this.root, []);
   }
