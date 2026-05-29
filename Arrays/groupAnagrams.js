@@ -37,7 +37,7 @@ var groupAnagrams = function(strs) {
     for (let word of strs) {
         let sortedWord = word.split("").sort().join('');
 
-        if (sortedKeyValues[sortedKeyValues]) {
+        if (sortedKeyValues[sortedWord]) {
             sortedKeyValues[sortedWord].push(word);
         } else {
             sortedKeyValues[sortedWord] = [word];
